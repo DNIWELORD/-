@@ -6,7 +6,7 @@ int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    printf("Раз \nPLZ RUSSIAN LANGUAGE SERGEY KIRIKEZA!\nТри\n, \clol\n Перевод температуры по Фаренгейту в температуру по Цельсию и наоборот\n");
+    printf("Раз \nPLZ RUSSIAN LANGUAGE AHHAHAHAHA SERGEY KIRIKEZA!\nТри\n, \clol\n Перевод температуры по Фаренгейту в температуру по Цельсию и наоборот\n");
 
     float f, c, L, up, st, g;
     L = 0; // нижняя граница температур
