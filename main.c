@@ -4,14 +4,16 @@
 
 int main()
 {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-    printf("Раз \nPLZ RUSSIAN LANGUAGE AHHAHAHAHA SERGEY KIRIKEZA!\nТри\n, \clol\n Перевод температуры по Фаренгейту в температуру по Цельсию и наоборот\n");
+SetConsoleCP(1251);
+SetConsoleOutputCP(1251);
+printf("Раз \nPLZ RUSSIAN LANGUAGE \nТри\n, \clol\n Перевод температуры по Фаренгейту в температуру по Цельсию и наоборот\n");
 
-    float f, c, L, up, st, g;
-    L = 0; // нижняя граница температур
-    up = 300; // верхняя граница
-    st = 20; // величина шага
+float f, c, g;
+while ((c = getchar()) != EOF)
+    putchar(c);
+#define L 0 /* нижняя граница температур */
+#define up 300 /* верхняя граница */
+#define st 20 /* величина шага */
 
     f = L;
     while (f <= up){
