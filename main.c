@@ -9,8 +9,9 @@ SetConsoleOutputCP(1251);
 printf("Раз \nPLZ RUSSIAN LANGUAGE \nТри\n, \clol\n Перевод температуры по Фаренгейту в температуру по Цельсию и наоборот\n");
 
 float f, c, g;
-while ((c = getchar()) != EOF)
+while ((c = getchar()) != EOF){
     putchar(c);
+}
 #define L 0 /* нижняя граница температур */
 #define up 300 /* верхняя граница */
 #define st 20 /* величина шага */
