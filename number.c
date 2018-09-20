@@ -6,7 +6,7 @@ int main()
 int c;
    while ((c=getchar()) != EOF){
     putchar(c);
-    printf(" %3.0d\n", c);
+    printf(" %3d\n", c);
    }
     return 0;
 }
