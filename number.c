@@ -4,12 +4,11 @@
 int main()
 {
     int c;
-        while ((c=getchar()) != EOF & c != 10){
-          putchar(c);
-          printf(" %3d\n", c);
-
+        while ((c=getchar()) != EOF){
+          if (c == '2' || c == 'h' || c == '5' || c == 'j' ) printf("3");
+          else putchar(c);
    }
-    printf("\\n %3d\n", c);
+
 
         return 0;
 }
