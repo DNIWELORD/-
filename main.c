@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <windows.h>
 
+
 int main()
 {
     SetConsoleCP(1251);
@@ -11,6 +12,7 @@ int main()
     long nc;
     double ng;
     int C, q, w, e, nl, nq, nw, ne, m, cc, Cc, CC, W, state;
+    int ndight, nwhite, nother, nword, nsymW[100], i, obs, ignor, n, I, max;
 
     #define IN 1 // Внутри слова
     #define OUT 0 // Снаружи слова
@@ -79,7 +81,7 @@ int main()
         if (W == '/') printf("\\");
 
     }
-*/
+
     printf("Программа подсчёта строк, слов и символов во входном потоке. Каждое слово выводится на новой строке.\n Введите ~ что бы посмотреть результат\n");
 
     state = OUT;
@@ -101,8 +103,43 @@ int main()
             putchar(C);
     }
     printf("Нажатий Enter: %d Количество слов: %d Количество символов %d\n", nq, nw, ne);
+while (nsymW[i] > 0 ){
+        --nsymW[i];
 
+  */  Напишите программу для вывода гистограммы длин слов во входном потоке.
+    ignor = nsymW[100] = nword = 0;
+    obs = OUT;
+    for (i=0; i<=100; ++i)
+        nsymW[i] = 0;
+    while ((c=getchar()) != EOF && c != '~'){
+    if (c == '\t' || c == '\n' || c == ' ')
+        obs = OUT;
+    else if (obs == OUT){
+        ++nword; // количество слов
+        obs = IN;
+        ++nsymW[nword];
+    }
+    else
+        ++nsymW[nword];
+    }
+    putchar(c);
+    for (i = 1; i <= nword; ++i ){
+        printf("%d \t",i);
+        if (i == nword)
+            printf("\n");
+    }
 
+    for (I = 1; I<= 15; ++I){
+            printf("\n");
+    for (i = 1; i <= nword; ++i ){
+        if (nsymW[i] >= I )
+        printf(" %3c\t",35);
+    }
+
+    }
+    printf("\n");
+    for (i = 1; i <= nword; ++i )
+        printf("%d ",nsymW[i]);
 
 
 
