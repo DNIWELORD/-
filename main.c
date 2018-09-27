@@ -1,10 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
+#define MAXLINE 1000 // максимальная длина строки в потоке
+
+int getline(char line[],int maxline);
+void copy(char to[], char from[]);
+
+void copy(char to[], char from[])
+{
+    int i;
+    i = 0;
+    while ((to[i] = from[i]) != '\0')
+        ++i;
+}
+int getline(char s[], int lim)
+{
+    int c, i;
+
+    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
+        s[i] = c;
+    if (c == '\n') {
+        s[i] = c;
+        ++i;
+    }
+    s[i] = '\0';
+    return i;
+}
+int power(int base, int n)
+{
+    int i, p;
+
+    p = 1;
+    for(i = 1; i <= n; ++i)
+        p = p * base;
+    return p;
+}
+int tempFC(int c)
+{
+    int f;
+    f = (5.0/9.0) * (c-32.0);
+    printf("%d", f);
+
+    return f;
+}
+
 
 
 int main()
 {
+
+
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
@@ -13,6 +58,12 @@ int main()
     double ng;
     int C, q, w, e, nl, nq, nw, ne, m, cc, Cc, CC, W, state;
     int ndight, nwhite, nother, nword, nsymW[100], i, obs, ignor, n, I, max;
+    int power(int m, int n);
+    int len; // длигга текущий строки
+    int maxs; // текущая максимальная длинна
+    char line[MAXLINE]; // текущая введёная строка
+    char longest[MAXLINE]; // саммая длинная строка из введёных
+
 
     #define IN 1 // Внутри слова
     #define OUT 0 // Снаружи слова
@@ -106,7 +157,7 @@ int main()
 while (nsymW[i] > 0 ){
         --nsymW[i];
 
-  */  Напишите программу для вывода гистограммы длин слов во входном потоке.
+   Напишите программу для вывода гистограммы длин слов во входном потоке.
     ignor = nsymW[100] = nword = 0;
     obs = OUT;
     for (i=0; i<=100; ++i)
@@ -141,7 +192,38 @@ while (nsymW[i] > 0 ){
     for (i = 1; i <= nword; ++i )
         printf("%d ",nsymW[i]);
 
+  Функция возведения в степень power
 
 
-        return 0;
-}
+    for (i = 0; i < 10; ++i)
+        printf("%d %d %d\n", i, power(2,i), power(-3,i));
+
+    tempFC(20);
+    printf("\n");
+    tempFC(40);
+    printf("\n");
+    tempFC(60);
+*/
+
+    maxs = 0;
+    while ((len=getline(line, MAXLINE)) > 0)
+        if (len > maxs) {
+            max = len;
+            copy(longest, line);
+        }
+    if (maxs > 0)
+        printf("%s", longest);
+
+
+
+    return 0;
+}jdj
+
+
+
+
+
+
+
+
+
