@@ -3,8 +3,68 @@
 #include <windows.h>
 #define MAXLINE 1000 // максимальная длина строки в потоке
 
-int getline(char line[],int maxline);
+int max1; // текущая максимальная длина
+
+char line1[MAXLINE]; // текущая введёная строка
+char longest1[MAXLINE]; // саммая длинная строка из введёных
+
+int getline1(void);
+void copy1(void);
+
+int getline(char line1[],int maxline);
 void copy(char to[], char from[]);
+
+int getline1(void)
+{
+    int c, i;
+    extern char line1[];
+
+    for (i = 0; i < MAXLINE - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
+        line1[i] = c;
+    if (c == '\n') {
+        line1[i] = c;
+        ++i;
+    }
+    line1[i] = '\0';
+    return i;
+}
+
+void copy1(void)
+{
+    int i;
+    extern char line1[], longest1[];
+
+    i = 0;
+    while ((longest1[i] = line1[i]) != '\0')
+        ++i;
+
+}
+
+
+
+
+
+
+void reverse(char s[])
+{
+    int i,c,d;
+
+    for (i = 0; (c = getchar()) != EOF && c != '\n'; ++i){
+        s[i] = c;
+        d =  i;
+    }
+    for (i = d; i >= 0; --i)
+        s[i+d+1] = s[d - i];
+
+    for (i = 0; i <= d; ++i){
+        s[i] = s[i+d+1];
+        s[i+d+1] = 0;
+        s[d+1] = '\0';
+    }
+    printf("%d\n", max1);
+}
+
+
 
 void copy(char to[], char from[])
 {
@@ -16,9 +76,9 @@ void copy(char to[], char from[])
 int getline(char s[], int lim)
 {
     int c, i;
-
-    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
+    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n' && c != '~'; ++i){
         s[i] = c;
+}
     if (c == '\n') {
         s[i] = c;
         ++i;
@@ -26,6 +86,7 @@ int getline(char s[], int lim)
     s[i] = '\0';
     return i;
 }
+
 int power(int base, int n)
 {
     int i, p;
@@ -53,17 +114,20 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
+    extern int max1;
+    extern char longest1[MAXLINE];
     float f, c, g;
     long nc;
     double ng;
     int C, q, w, e, nl, nq, nw, ne, m, cc, Cc, CC, W, state;
     int ndight, nwhite, nother, nword, nsymW[100], i, obs, ignor, n, I, max;
     int power(int m, int n);
-    int len; // длигга текущий строки
+    int len; // длинна текущий строки
     int maxs; // текущая максимальная длинна
     char line[MAXLINE]; // текущая введёная строка
     char longest[MAXLINE]; // саммая длинная строка из введёных
-
+    char eight[1000], s[MAXLINE], S[MAXLINE], Tab[8], Tab2[10000];
+    int eigh, ce, co, go, b;
 
     #define IN 1 // Внутри слова
     #define OUT 0 // Снаружи слова
@@ -203,22 +267,86 @@ while (nsymW[i] > 0 ){
     tempFC(40);
     printf("\n");
     tempFC(60);
-*/
 
-    maxs = 0;
-    while ((len=getline(line, MAXLINE)) > 0)
+    eigh = maxs = 0;
+    for (i = 0; i <= 1000; ++i)
+                eight[i] = 0;
+    while ((len=getline(line, MAXLINE)) > 0){
+        printf("Работает len:%d  MAXLINE:%d\n", len, MAXLINE);
+
         if (len > maxs) {
-            max = len;
+            maxs = len;
             copy(longest, line);
         }
+        if (len > 80)
+            printf("Длинна строки больше 80: %s Длинна: %d\n", line, len);
+            for (i = 0; i <= len; ++i)
+                if (line[i] == '\0')
+                    eigh = eigh + i ;
+            else   eight[eigh + i] = line[i];
+
+
+    }
     if (maxs > 0)
         printf("%s", longest);
+        printf("Строки длиннее чем 80: %s", eight);
+
+
+
+    reverse(s);
+    printf("%s", s);
+
+
+
+    max1 = 0;
+    while ((len = getline1()) > 0)
+        if (len > max1) {
+            max1 = len;
+            copy1();
+        }
+    if (max1 > 0)
+        printf("%s", longest1);
+
+// Программа замены табуляции на пробелы
+    for(i = 0; i < 8; ++i)
+        Tab[i] = ' ';
+    Tab[8] = '\0';
+    while((c = getchar()) != EOF && c != '\n')
+        if (c == '\t')
+            printf("%s", Tab);
+    else
+        putchar(c);
+
+   */
+   // программа замены пробелов на минимальное количество табулдяций и дополнительных пробелов
+
+   ce = 0;
+    while ((c = getchar()) != EOF && c != '\n')
+        if (c == ' ')
+            ++ce;
+        else if (ce >= 8){
+            co = ce/8; // Количество необходимых для замены пробелов /t
+            ce = ce - co * 8; // Количество оставшихся пробелов
+            for (b = 0; b < co; ++b){
+                Tab2[b] = '\t';
+                go = b;
+            }
+            for (i = 0; i < ce; ++i)
+                Tab2[b+i] = ' ';
+            Tab2[b+i+1] = '\0';
+            printf("%s", Tab2);
+            ce = 0;
+            putchar(c);
+        }
+        else{
+            ce = 0;
+            putchar(c);
+        }
 
 
 
     return 0;
-}jdj
-
+}
 
 
 
